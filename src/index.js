@@ -1,15 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { Router, browserHistory } from 'react-router'
+import reducers from './reducers'
 
-import App from './components/app';
-import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+// www.blog.com/post/5
+// whenever /post/5 changes browserHistory tells react-router to update
+
+// hashHistory /# everything after the hash
+
+const createStoreWithMiddleware = applyMiddleware()(createStore)
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <Router history={browserHistory} />
   </Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('.container'))
